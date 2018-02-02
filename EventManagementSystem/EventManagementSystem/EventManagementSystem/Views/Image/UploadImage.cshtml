@@ -1,0 +1,25 @@
+﻿@model EventManagementSystem.Models.ImageVM
+
+@{
+    ViewBag.Title = "UploadImage";
+}
+
+<h2>UploadImage</h2>
+    <>
+    <div class="btn btn-primary">
+@using (Html.BeginForm("UploadImage", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.DropDownListFor(model => model.E_id, ViewBag.EventsList as SelectList, "--select --", new { @class = "form-control" })
+
+    @Html.LabelFor(model => model.Path, new { @class = "control-label col-md-2" })
+      <input type="file" name="ImageFile"  required accept="image/*"/>
+      <input type="submit" value="Upload" class="btn btn-default" />
+
+
+}
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+   
+</script>

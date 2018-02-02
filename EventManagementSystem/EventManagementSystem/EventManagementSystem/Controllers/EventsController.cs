@@ -14,7 +14,7 @@ namespace EventManagementSystem.Controllers
     public class EventsController : Controller
     {
 
-        EventMSEntities db = new EventMSEntities();
+        EventMS1Entities db = new EventMS1Entities();
     
     public ActionResult Index()                                          //this method will display the records on the View Page
     {
@@ -146,7 +146,8 @@ namespace EventManagementSystem.Controllers
         public ActionResult LogOut()
         {
             Session["email"] = null;
-            Session.RemoveAll();
+            //Session.RemoveAll();
+            Session.Abandon();
             return RedirectToAction("Index","Login");
         }
 }

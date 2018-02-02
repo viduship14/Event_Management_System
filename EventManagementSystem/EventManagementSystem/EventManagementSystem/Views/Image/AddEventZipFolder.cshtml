@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "AddEventZipFolder";
+}
+<link href="~/Content/Zipfilestyle.css" rel="stylesheet" />
+<h2>AddEventZipFolder</h2>
+<input type="file" name="FileUpload1" id="fileUpload" placeholder="Please select the file" accept=".zip"/><br />
+<input id="btnUploadFile" type="button" value="Upload File" />
+<div id="message"></div>
+@section  Scripts{
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/MyScript.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btnUploadFile').on('click', function () {
+            
+            var data = new FormData();
+            var files = $("#fileUpload").get(0).files;
+            // Add the uploaded image content to the form data collection 
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+            // Make Ajax request with the contentType = false, and procesDate = false 
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/Image/Upload",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (data) {
+                    $('#message').html(data);
+                },
+                error: function (e) {
+                    console.log('Oops, Something went wrong!.' + e.message);
+                }
+            });
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation 
+            });
+        });
+    });
+</script>
+}

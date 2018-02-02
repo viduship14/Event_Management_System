@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DisplayCarousel";
+}
+
+<h2>DisplayCarousel</h2>
+
+<div class="breadcrumb" style="background-color:#45455a;color:white; ">
+    <nav aria-label="Breadcrumb" class="caption">
+        <center><h2>Personalize Images </h2></center>
+    </nav>
+
+</div>
+<div class=" jumbotron">
+    
+        <form class="form-inline" method="post" action="">
+            <div>
+                
+                @*<input style="padding-right:2px;" type="text" class="form-control img-rounded" name="ImageName" id="ImageName" />*@
+                <input type="file" name="ImageFile" accept="image/*" required />
+                <input type="submit" class="btn btn-primary img-rounded" name="" value="Upload Image" />
+                
+                </div>
+</form>
+
+
+
+    </div>
+
+
+<div>
+  
+       
+
+    <table class="table table-hover " style="font-weight:bold; background-color:white;  ">
+        <thead>
+            <tr>
+                <th scope="col">Image Name</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var p in ViewBag.data) { 
+            <tr>
+                <!-- image path using for loop here-->
+                <td>@p.Path;
+                </td>
+                <td>
+                    <button class="btn btn-primary img-rounded">Delete</button>
+                </td>
+            </tr>
+                }
+            
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>

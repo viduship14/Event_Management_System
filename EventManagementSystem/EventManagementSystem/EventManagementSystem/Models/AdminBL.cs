@@ -6,10 +6,10 @@ namespace EventManagementSystem.Models
 {
     public class AdminBL
     {
-        public EventMSEntities entity; //Object of the EntityFrameWork
+        public EventMS1Entities entity; //Object of the EntityFrameWork
         public AdminBL()
         {
-            entity = new EventMSEntities(); 
+            entity = new EventMS1Entities(); 
         }
         public bool AuthenticateUser(string EmailId,string password) // method to authenticate user
         {

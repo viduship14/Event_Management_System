@@ -3,42 +3,549 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Event Management System</title>
+    <script>
+        var link = document.getElementsByClassName('btn-login');
+        var link2 = document.getElementsByClassName('btn-logout');
+        var session = @Session["email"];
+        alert(session + "this");
+    if(session != null){
+        link[0].style.display = "none";
+        link2[0].style.display = "block";
+    }else{
+        link[0].style.display = "block";
+        link2[0].style.display = "none";
+    }
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="~/Content/udit_style.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
 
+    <style>
+        #navbar-styling .navbar-expand-lg {
+            background-color: black;
+            height: 60px;
+        }
+
+        #navbar-styling a.navbar-brand {
+            padding-top: 20px;
+        }
+
+        #navbar-styling .navbar-brand:hover {
+        }
+
+        #navbar-styling .navbar-collapse {
+            padding: 20px;
+        }
+
+        #navbar-styling a.login {
+            color: lightgray;
+            margin-top: 20px;
+            font-size: large;
+        }
+
+            #navbar-styling a.login:hover {
+                color: white;
+                font-weight: bolder;
+            }
+
+        #navbar-styling .navbar-text {
+            color: lightgray;
+            margin-left: -5px;
+            font-size: large;
+            margin-top: 20px;
+        }
+
+        #navbar-styling div.navbar-text:hover {
+            color: white;
+            font-weight: bold;
+        }
+
+        #navbar-styling .navbar-header {
+            margin-top: -10px;
+        }
+
+        .site-footer {
+            font-size: 13px;
+            font-weight: 400;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+            .site-footer a {
+                color: #ffffff;
+            }
+
+                .site-footer a:hover {
+                    color: #eeb313;
+                }
+
+            .site-footer .widget {
+                margin-bottom: 20px;
+            }
+
+        .boxed .site-footer {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .footer-sidebars {
+            overflow: hidden;
+            position: relative;
+            background-color: #261e4c;
+        }
+
+            .footer-sidebars .footer-sidebars-bg {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+            }
+
+            .footer-sidebars .footer-widgets {
+                padding: 50px 50px 30px 60px;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+                .footer-sidebars .footer-widgets:last-child {
+                    border-width: 0;
+                }
+
+                .footer-sidebars .footer-widgets:first-child {
+                    padding-left: 15px;
+                }
+
+                .footer-sidebars .footer-widgets:last-child {
+                    padding-right: 15px;
+                }
+
+        .footer-columns-4 .footer-widgets {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .footer-text {
+            background: grey;
+            color: #261e4c;
+            padding: 30px 0;
+            line-height: 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+            .footer-text a {
+                color: #ffffff;
+            }
+
+                .footer-text a:hover {
+                    color: #ffffff;
+                }
+
+        .footer-nav {
+            float: right;
+            font-size: 10px;
+            padding-top: 15px;
+        }
+
+        a.scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            height: 40px;
+            width: 40px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            text-align: center;
+            padding-top: 7px;
+            color: #ffffff;
+        }
+
+            a.scroll-top:hover {
+                background: rgba(0, 0, 0, 0.4);
+                color: #ffffff;
+            }
+
+            a.scroll-top:before {
+                font-size: 25px;
+            }
+
+        .footer-nav .sub-menu {
+            display: none;
+        }
+
+        .footer-nav ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-nav li {
+            float: left;
+            list-style: none;
+        }
+
+            .footer-nav li a {
+                padding: 0 0 0 30px;
+                color: #261e4c;
+            }
+
+                .footer-nav li a:hover {
+                    color: #ffffff;
+                }
+
+        .footer-widgets .fitwp-recent-posts-widget .fitwp-date,
+        .footer-widgets .fitwp-recent-posts-widget .fitwp-more-link {
+            color: #eeb313;
+        }
+
+        .footer-widgets a {
+            color: #ffffff;
+        }
+
+            .footer-widgets a:hover {
+                color: #eeb313;
+            }
+
+        .footer-widgets .widget-title {
+            color: #ffffff;
+            font-size: 14px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .footer-widgets .widget-title:before {
+                content: "";
+                position: absolute;
+                bottom: 1px;
+                left: 0;
+                right: 40px;
+                height: 1px;
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+
+            .footer-widgets .widget-title:after {
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 50px;
+                height: 3px;
+                background-color: #eeb313;
+            }
+
+        .footer-widgets .widget li a,
+        .footer-widgets .tagcloud a:hover {
+            color: #ffffff;
+        }
+
+        .footer-widgets .widget li {
+            color: #cccccc;
+        }
+
+        .footer-sidebars {
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+
+            .footer-sidebars .footer-widgets {
+                padding: 0 15px;
+            }
+
+        .footer-text {
+            text-align: center;
+        }
+
+            .footer-text .footer-copyright {
+                margin-bottom: 20px;
+            }
+
+        .footer-nav {
+            float: none;
+        }
+
+            .footer-nav li {
+                float: none;
+                display: inline-block;
+            }
+
+                .footer-nav li a {
+                    padding: 0 15px;
+                    display: block;
+                }
+
+        body {
+            background: #f4f4f4;
+            font-weight: 300;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 80vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .row {
+            margin-top: 40px;
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 2em;
+        }
+
+        #events-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .events {
+            background: #fff;
+            border-radius: 7px;
+            box-shadow: 0 2px 2px #efefef;
+        }
+
+        .event {
+            padding: 15px;
+        }
+
+        .event-title {
+            float: left;
+        }
+
+        .past-event-details {
+            float: right;
+        }
+
+            .past-event-details a {
+                text-decoration: none;
+            }
+
+        hr {
+            margin: 0;
+            border: 0;
+            height: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        #carouselExampleControls {
+            width: 65%;
+        }
+
+        .carousel-item .card {
+            width: 100%;
+        }
+
+            .carousel-item .card img {
+                width: 100%;
+                height: 300px;
+            }
+
+        .upcoming-event-date,
+        .upcoming-event-venue {
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .event-heading {
+            float: left;
+        }
+
+        .event-view-all {
+            float: right;
+            margin-top: 10px;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .event-line-wrapper {
+            width: 65%;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <div id="navbar-styling">
+        <div class="navbar navbar-expand-lg navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header ">
+                    <a class="navbar-brand">
+                        <img src="~/image/Logo-Original.png" width="80" height="30" class="d-inline-block align-top" alt="">
+                    </a>
+                    <div class="navbar-text ">
+                        XCEEDANCE
+                    </div>
+                </div>
+                <div class="ml-auto" style="margin-top:10px; text-align:right; ">
+                    <div id="log_in">
+                        <a class="login btn-login" href="@Url.Action("Index", "Login")">Login</a>;
+                    </div>
+                    <div id="log_out"><!--style="display:none;">-->
+                    <a class="login btn-logout" href="@Url.Action("Logout","Login")">Logout</a>
+                </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+    <div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <div>
+        <footer id="site-footer" class="site-footer">
+
+
+            <div class="footer-sidebars footer-columns-4">
+
+                <div class="footer-sidebars-bg" style="width: 374.5px;"></div>
+
+                <div class="container">
+
+                    <div class="row">
+
+
+                        <div class="footer-widgets footer-widgets-1 col-sm-12 col-md-3">
+
+                            <div id="text-2" class="widget widget_text">
+                                <h4 class="widget-title">Boston, USA</h4>			<div class="textwidget">
+                                    +1 (617) 531-2158<br>
+                                    <a class="white" href="mailto:contact@xceedance.com">contact@xceedance.com</a><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="footer-widgets footer-widgets-2 col-sm-12 col-md-3">
+
+                            <div id="text-3" class="widget widget_text">
+                                <h4 class="widget-title">London, UK</h4>			<div class="textwidget">
+                                    +44 (0) 203 786 1225<br>
+                                    <a class="white" href="mailto:contact@xceedance.com">contact@xceedance.com</a><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="footer-widgets footer-widgets-3 col-sm-12 col-md-3">
+
+                            <div id="text-5" class="widget widget_text">
+                                <h4 class="widget-title">Krakow, Poland</h4>			<div class="textwidget">
+                                    +48 12 384 66 17<br>
+                                    <a class="white" href="mailto:contact@xceedance.com">contact@xceedance.com</a><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="footer-widgets footer-widgets-4 col-sm-12 col-md-3">
+
+                            <div id="text-4" class="widget widget_text">
+                                <h4 class="widget-title">NCR &amp; Bangalore, India</h4>			<div class="textwidget">
+                                    +91 124 479 7800 / ext. 201<br>
+                                    <a class="white" href="mailto:contact@xceedance.com">contact@xceedance.com</a><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="footer-text" class="footer-text">
+
+                <div class="container">
+
+                    <div class="row">
+
+
+                        <div class="footer-copyright col-md-6 col-sm-12">
+
+                            <div class="copyright"><img src="~/image/Logo-full.png"></div>
+
+                        </div>
+
+
+
+
+
+                        <div class="footer-menu col-md-6 col-sm-12">
+                            <div class="topbar2">
+                                <div id="topbar-right" class="topbar-right top-right-header topbar-sidebar">
+                                    <div id="text-6" class="widget widget_text">
+                                        <div class="textwidget">
+                                            <div class="topbar2">
+                                                <div id="topbar-right" class="topbar-right top-right-header topbar-sidebar">
+
+                                                    <div id="fitwp-social-links-widget-blog" class="widget">
+                                                        <a href="https://xceedance.com//news/#blog" rel="nofollow" title="">
+                                                            <img src="https://xceedance.com/wp-content/uploads/2017/03/Blog-Icon-1.png">
+                                                        </a>
+                                                    </div>
+
+
+                                                    <div id="fitwp-social-links-widget-2" class="widget social-links-widget">
+                                                        <a href="https://www.linkedin.com/company/xceedance/" target="_blank" rel="nofollow" title="">
+                                                            <i class="fa fa-linkedin"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="bermuda" style="color:white;">The registered office of Xceedance is located at<br>Dorchester House, 7 Church Street, Hamilton HM 11, Bermuda.<br>The company has operations in several countries.<br><span class="privacy"><a href="/privacy">Privacy Policy</a></span></div>
+
+                            <nav id="footer-nav" class="footer-nav nav clearfix">
+
+                                <ul id="menu-foot" class="menu">
+                                    <li id="menu-item-3983" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3983"><a href="#">Copyright © 2017. All rights reserved.</a></li>
+                                </ul>
+                            </nav>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </footer>
+
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

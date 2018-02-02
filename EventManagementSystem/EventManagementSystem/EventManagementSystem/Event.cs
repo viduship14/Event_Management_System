@@ -11,9 +11,7 @@ namespace EventManagementSystem
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using EventManagementSystem.Models;
-
+    
     public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,29 +21,11 @@ namespace EventManagementSystem
         }
     
         public int E_id { get; set; }
-
-
-        [Required(ErrorMessage = "Please Enter Event Name", AllowEmptyStrings = false)]
         public string E_name { get; set; }
-
-        [Required(ErrorMessage = "Please Enter Event's Starting Date", AllowEmptyStrings = false)]
-        [CurrentDate(ErrorMessage = "Event Start Date must be after or equal to current date")]
         public System.DateTime Event_start { get; set; }
-
-
-        [Required(ErrorMessage = "Please Enter Event's Ending Date", AllowEmptyStrings = false)]
-        [CurrentDate1(ErrorMessage = "Event End Date must be after or equal to current date")]
         public System.DateTime Event_end { get; set; }
-
-
-        [Required(ErrorMessage = "Please Enter Specification", AllowEmptyStrings = false)]
         public string Specification { get; set; }
-
-
-        [Required(ErrorMessage = "Please Enter Venue", AllowEmptyStrings = false)]
         public string Venue { get; set; }
-
-
         public int Flag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

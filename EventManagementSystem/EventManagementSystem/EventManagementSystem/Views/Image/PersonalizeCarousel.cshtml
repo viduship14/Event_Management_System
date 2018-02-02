@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "PersonalizeCarousel";
+}
+
+<div class="breadcrumb" style="background-color:#45455a;color:white; ">
+    <nav aria-label="Breadcrumb" class="caption">
+        <center><h2>Personalize Images </h2></center>
+    </nav>
+
+</div>
+<div class=" jumbotron">
+    <div>
+        <form class="form-inline" method="post" action="">
+
+            <input type="file" class="btn btn-primary form-control " name="" value="Upload Image" />
+            <button class="btn btn-primary" id="uploadbtn">Upload</button>
+        </form>
+        <script>
+            document.getElementById("uploadbtn").addEventListener("click", validate);
+
+            function validate() {
+                var count = 0;
+                var ImageList = @Html.Raw(Json.Encode(this.ViewBag.Data));
+                count = ImageList.get_count();
+                if (count >= 5) {
+                    alert("You can't upload more than 5 images");
+                }
+            }
+        </script>
+
+
+    </div>
+</div>
+
+<div>
+    <table class="table table-hover " style="font-weight:bold; background-color:white;  ">
+        <thead>
+            <tr>
+                <th scope="col">Image Name</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i=0;i<ViewBag.lpath.Count();i++)
+            {
+            <tr>
+                <td >
+                    @ViewBag.lpath[i]
+                </td>
+                <td>
+                     <a class="btn btn-primary img-rounded" href="@Url.Action("PersonalizeCarousel", "Image" , new { id=ViewBag.lid[i]})">Delete</a> 
+                    
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+
+
+
+
+

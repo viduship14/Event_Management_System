@@ -33,6 +33,7 @@ namespace EventManagementSystem.Controllers
 
         public ActionResult AuthenticateUser(string Email, string Password)
         {
+            Password= Password.Trim();
             AdminBL admin = new AdminBL();
             bool authenticate = admin.AuthenticateUser(Email, Password);
             if (authenticate == true)
@@ -92,7 +93,14 @@ namespace EventManagementSystem.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
+        public ActionResult Logout()
+        {
+            Session["email"] = null;
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Login");
+        }
     }
+    
 }          
 /*public ActionResult ForgotPassword(string email)
         {

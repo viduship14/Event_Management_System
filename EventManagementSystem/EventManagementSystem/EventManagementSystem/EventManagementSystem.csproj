@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -193,60 +195,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs">
-      <DependentUpon>EventMSEntities.tt</DependentUpon>
+      <DependentUpon>EventMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\App_Start\FilterConfig.cs" />
+    <Compile Include="Controllers\App_Start\IdentityConfig.cs" />
+    <Compile Include="Controllers\App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Event.cs">
-      <DependentUpon>EventMSEntities.tt</DependentUpon>
+      <DependentUpon>EventMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventMSEntities.Context.cs">
+    <Compile Include="EventMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventMSEntities.Context.tt</DependentUpon>
+      <DependentUpon>EventMS.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventMSEntities.cs">
+    <Compile Include="EventMS.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventMSEntities.tt</DependentUpon>
+      <DependentUpon>EventMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventMSEntities.Designer.cs">
+    <Compile Include="EventMS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventMSEntities.edmx</DependentUpon>
+      <DependentUpon>EventMS.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>EventMSEntities.tt</DependentUpon>
+      <DependentUpon>EventMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminBL.cs" />
     <Compile Include="Models\CurrentDate1Attribute.cs" />
     <Compile Include="Models\CurrentDateAttribute.cs" />
     <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\EventBL.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EventMSEntities.Context.tt">
+    <Content Include="Content\udit_style.css" />
+    <Content Include="EventMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EventMSEntities.edmx</DependentUpon>
-      <LastGenOutput>EventMSEntities.Context.cs</LastGenOutput>
+      <DependentUpon>EventMS.edmx</DependentUpon>
+      <LastGenOutput>EventMS.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EventMSEntities.tt">
+    <Content Include="EventMS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EventMSEntities.edmx</DependentUpon>
-      <LastGenOutput>EventMSEntities.cs</LastGenOutput>
+      <DependentUpon>EventMS.edmx</DependentUpon>
+      <LastGenOutput>EventMS.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -259,12 +266,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="EventMSEntities.edmx">
+    <EntityDeploy Include="EventMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EventMSEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>EventMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="EventMSEntities.edmx.diagram">
-      <DependentUpon>EventMSEntities.edmx</DependentUpon>
+    <Content Include="EventMS.edmx.diagram">
+      <DependentUpon>EventMS.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -298,9 +305,15 @@
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Image\AddEventZipFolder.cshtml" />
+    <Content Include="Views\Image\DisplayCarousel.cshtml" />
+    <Content Include="Views\Image\PersonalizeCarousel.cshtml" />
+    <Content Include="Views\Image\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="image\" />
     <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>

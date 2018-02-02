@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventMS1ModelStoreContainer" CdmEntityContainer="EventMS1Entities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="EventMS1Model.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+          <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="EventMS1Model.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="E_id" ColumnName="E_id" />
+          <ScalarProperty Name="E_name" ColumnName="E_name" />
+          <ScalarProperty Name="Event_start" ColumnName="Event_start" />
+          <ScalarProperty Name="Event_end" ColumnName="Event_end" />
+          <ScalarProperty Name="Specification" ColumnName="Specification" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="EventMS1Model.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="E_id" ColumnName="E_id" />
+          <ScalarProperty Name="Image_id" ColumnName="Image_id" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
