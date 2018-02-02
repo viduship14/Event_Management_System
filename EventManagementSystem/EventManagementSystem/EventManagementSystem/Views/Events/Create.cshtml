@@ -1,0 +1,112 @@
+﻿@model Event
+
+@{
+    ViewBag.Title = "Create";
+}
+<head>
+    <style>
+        .Editform {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+            .form input {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .form textarea {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn {
+            border: 2px solid gray;
+            color: white;
+            background-color: cornflowerblue;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        #venue, #description {
+            height: 150px;
+            font-size: 14pt;
+        }
+    </style>
+
+</head>
+
+<div class="form " style="display:block; text-align:center;margin-right:100px; margin-left:100px;" title="Create/Edit" id="editform">
+
+    <form class="Editform" method="post" style="display:inline-block; margin-left:auto; margin-right:auto; text-align:left; margin-top:auto;" action="@Url.Action("Create","Events")">
+        <h2>Create Event</h2>
+       
+        @Html.ValidationMessageFor(a => a.E_name, "", new { @class = "text-danger" })
+        <input type="text" placeholder="Event Name" id="title" name="E_name"/><br />
+       
+
+        @Html.ValidationMessageFor(a => a.Event_start, "", new { @class = "text-danger" })
+        <input placeholder="Start Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="startdate" name="Event_start" required><br />
+
+        @Html.ValidationMessageFor(a => a.Event_end, "", new { @class = "text-danger" })
+        <input placeholder="End Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="enddate" name="Event_end" required><br />
+
+        @Html.ValidationMessageFor(a => a.Venue, "", new { @class = "text-danger" })
+        <textarea name="Venue" cols="40" rows="5" placeholder="Venue"></textarea><br />
+
+        @Html.ValidationMessageFor(a => a.Specification, "", new { @class = "text-danger" })
+        <textarea name="Specification" cols="40" rows="5" placeholder="Description"></textarea><br />
+        <div>
+            <div class="upload-btn-wrapper">
+                <button class="btn" style="margin-left:50px;">Upload a file</button>
+                <input type="file" name="myfile" />
+            </div>
+        </div>
+        <label>@ViewBag.Message</label>
+        <input type="submit" class="btn-primary" style="background-color:dodgerblue; color:white;" value="Submit" />
+    </form>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,115 @@
+﻿@model Event
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<head>
+    <style>
+        .Editform {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+            .form input {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .form textarea {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn {
+            border: 2px solid gray;
+            color: white;
+            background-color: cornflowerblue;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        #venue, #description {
+            height: 150px;
+            font-size: 14pt;
+        }
+    </style>
+
+</head>
+
+<div class="form " style="display:block; text-align:center;margin-right:100px; margin-left:100px;" title="Edit" id="editform">
+
+    <form class="Editform" method="post" style="display:inline-block; margin-left:auto; margin-right:auto; text-align:left; margin-top:auto;" action="@Url.Action("Edit","Events")">
+        <h2>Update Event</h2>
+
+        @Html.ValidationMessageFor(a => a.E_name, "", new { @class = "text-danger" })
+        <input type="text" value=@Model.E_name placeholder="Title" id="title" name="E_name"/><br />
+
+        @Html.ValidationMessageFor(a => a.Event_start , "", new { @class = "text-danger" })
+        <input  class="textbox-n" type="text" value=@Model.Event_start onfocus="(this.type='date')" id="startdate" name="Event_start" required><br />
+
+        @Html.ValidationMessageFor(a => a.Event_end, "", new { @class = "text-danger" })
+        <input placeholder="End Date" class="textbox-n" value=@Model.Event_end type="text" onfocus="(this.type='date')" id="enddate" name="Event_end" required><br />
+
+        @Html.ValidationMessageFor(a => a.Venue, "", new { @class = "text-danger" })
+        <textarea name="Venue"  cols="40"  rows="5" placeholder="Venue" required>@Model.Venue</textarea><br />
+
+        @Html.ValidationMessageFor(a => a.Specification, "", new { @class = "text-danger" })
+        <textarea name="Specification" cols="40" rows="5" placeholder="Specification" required>@Model.Specification</textarea><br />
+        @Html.HiddenFor(model => model.E_id)
+        <button style="margin-left:50px;" class="btn btn-primary" onclick="location.href='@Url.Action("Edit_Images", "Events")'">Edit Images</button>
+        <div>
+            <div class="upload-btn-wrapper">
+                <br />
+                <button class="btn btn-primary" style="margin-left:50px;">Upload a file</button>
+                <input type="file" name="myfile" />
+
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" style="background-color:dodgerblue; color:white; text-decoration:solid;"value="Update" />
+        <label>@ViewBag.Message</label>
+        
+    </form>
+</div>
+

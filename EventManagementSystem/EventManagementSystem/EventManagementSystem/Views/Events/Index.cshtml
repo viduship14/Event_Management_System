@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+@*ADMIN HOME PAGE*@
+<head>
+    <style>
+        button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            button:hover {
+                background-color: black;
+                color: white;
+            }
+            .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+            .form input {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .form button {
+                font-family: "Roboto", sans-serif;
+                text-transform: uppercase;
+                outline: 0;
+                background: #4CAF50;
+                width: 100%;
+                border: 0;
+                padding: 15px;
+                color: #FFFFFF;
+                font-size: 14px;
+                -webkit-transition: all 0.3 ease;
+                transition: all 0.3 ease;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<div class="container">
+    <button class="col-xs-6" onclick="location.href='@Url.Action("Adminhome","Admin")'">Create/Modify Event</button>
+    <button class="col-xs-6" onclick="location.href='@Url.Action("Personalize", "Home")'">Personalize Images</button>
+</div>
+<div id="events">
+    <br />
+    <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "Events")'" >Create Event</button>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="color:blue;">
+                    Event Name
+                </th>
+                <th colspan="2" style="text-align:center; color:blue;">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                   
+                    <td>
+                         @v.E_name
+                    </td>
+                    <td>
+                         <button class="btn btn-defult" onclick="location.href='@Url.Action("Edit", "Events",new{id=@v.E_id})'">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-default" onclick="location.href='@Url.Action("Delete", "Events" ,new{id=@v.E_id})'">Delete</button>
+                    </td>
+                    <td>
+                            <button class="btn btn-primary">Upload</button>
+                          <input type="file" name="myfile" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @*Table to display event links and modify them*@
+    </table>
+</div>
+
+@*CHANGE THE CODE,ONLY THE PART OF UPLOAD FORM NOT STYLING*@
+<div class="container form" id="upload_div" style="display:none">
+    <a id="back" href="#"><h5>Back</h5></a>
+    <h2>Upload</h2>
+    @*UploadFile=>Action name, Upload=>Controller Name*@
+
+
+    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+        <div>
+            @Html.TextBox("file", "", new { type = "file" }) <br />
+
+            <input type="submit" value="Upload" />
+
+            @ViewBag.Message
+
+        </div>
+    }
+</div>
+<script>
+    var upload = document.getElementById("upload_image");
+    upload.addEventListener("click", function () {
+        console.log("It's working");
+        upload_div.style.display = "block";
+        events.style.display = "none";
+
+    });
+    var Back = document.getElementById("back");
+    Back.addEventListener("click", function () {
+        events.style.display = "block";
+        upload_div.style.display = "none";
+    });
+</script>
